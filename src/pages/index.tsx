@@ -7,6 +7,7 @@ import Skeleton from "react-loading-skeleton";
 import { useLivePreviewCtx } from "../context/live-preview-context-provider";
 import { EntryProps } from "../typescript/components";
 import { Page } from "../typescript/pages";
+import "../helper/composableStudio"
 
 export default function Home({ entry }:{entry:({page, blogPost}:EntryProps)=> void}) {
   const lpTs = useLivePreviewCtx();

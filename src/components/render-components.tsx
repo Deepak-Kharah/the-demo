@@ -10,19 +10,31 @@ import SectionBucket from "./section-bucket";
 import AboutSectionBucket from "./about-section-bucket";
 import SectionWithHtmlCode from "./section-with-html-code";
 import { ComponentsProps } from "../typescript/pages";
+import "./composable.css";
+import { ComposableComponent } from "@contentstack/composable-studio-react";
+import { FancyButton } from "./FancyButton";
 
-type RenderComponentsProps ={
-  pageComponents:ComponentsProps[]
-  blogsPage?: boolean
-  contentTypeUid:string
-  entryUid:string
-  locale:string
-}
+type RenderComponentsProps = {
+  pageComponents: ComponentsProps[];
+  blogsPage?: boolean;
+  contentTypeUid: string;
+  entryUid: string;
+  locale: string;
+};
 
-export default function RenderComponents({ pageComponents, blogsPage, contentTypeUid, entryUid, locale }:RenderComponentsProps) {
-    
+export default function RenderComponents({
+  pageComponents,
+  blogsPage,
+  contentTypeUid,
+  entryUid,
+  locale,
+}: RenderComponentsProps) {
   return (
-    <div data-pageref={entryUid} data-contenttype={contentTypeUid} data-locale={locale}>
+    <div
+      data-pageref={entryUid}
+      data-contenttype={contentTypeUid}
+      data-locale={locale}
+    >
       {pageComponents?.map((component, key: number) => {
         if (component.hero_banner) {
           return blogsPage ? (
@@ -31,10 +43,14 @@ export default function RenderComponents({ pageComponents, blogsPage, contentTyp
               key={`component-${key}`}
             />
           ) : (
-            <HeroBanner
-              hero_banner={component.hero_banner}
-              key={`component-${key}`}
-            />
+            <>
+              <HeroBanner
+                hero_banner={component.hero_banner}
+                key={`component-${key}`}
+              />
+              {/* <FancyButton /> */}
+              {/* <ComposableComponent compositionUid="section" /> */}
+            </>
           );
         }
         if (component.section) {

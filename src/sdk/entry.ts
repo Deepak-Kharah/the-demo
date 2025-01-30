@@ -26,12 +26,12 @@ const {
   REACT_APP_CONTENTSTACK_APP_HOST,
 } = process.env;
 
-const customHostBaseUrl = REACT_APP_CONTENTSTACK_API_HOST? customHostUrl(
-  REACT_APP_CONTENTSTACK_API_HOST as string
-): "";
+const customHostBaseUrl = REACT_APP_CONTENTSTACK_API_HOST
+  ? customHostUrl(REACT_APP_CONTENTSTACK_API_HOST as string)
+  : "";
 
 // SDK initialization
-const Stack = initializeContentStackSdk();
+export const Stack = initializeContentStackSdk();
 
 // set host url only for custom host or non prod base url's
 if (customHostBaseUrl && isValidCustomHostUrl(customHostBaseUrl)) {
@@ -42,11 +42,10 @@ if (customHostBaseUrl && isValidCustomHostUrl(customHostBaseUrl)) {
 ContentstackLivePreview.init({
   //@ts-ignore
   stackSdk: Stack,
-  clientUrlParams:{
-    host: REACT_APP_CONTENTSTACK_APP_HOST
-  }
+  clientUrlParams: {
+    host: REACT_APP_CONTENTSTACK_APP_HOST,
+  },
 })?.catch((error) => console.error(error));
-
 
 export const { onEntryChange } = ContentstackLivePreview;
 

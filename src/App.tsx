@@ -11,9 +11,10 @@ import "./styles/modal.css";
 import "@contentstack/live-preview-utils/dist/main.css";
 import "react-loading-skeleton/dist/skeleton.css";
 import { EntryProps } from "./typescript/components";
+import { ComposableStudioCanvas } from "@contentstack/composable-studio-react";
 
 function App() {
-  const [getEntry, setEntry] = useState({} as EntryProps );
+  const [getEntry, setEntry] = useState({} as EntryProps);
 
   function getPageRes(response: EntryProps) {
     setEntry(response);
@@ -31,6 +32,11 @@ function App() {
             element={<BlogPost entry={getPageRes} />}
           />
           <Route path="/404" element={<Error />}></Route>
+          <Route
+            path="/composable-studio-canvas"
+            element={<ComposableStudioCanvas />}
+          ></Route>
+
           <Route path="*" element={<Error />}></Route>
         </Route>
       </Routes>
